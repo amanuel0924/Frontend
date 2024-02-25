@@ -40,8 +40,13 @@ function App() {
               placeholder="enter celisus number"
               value={cl}
               onChange={(e) => {
-                setCl(e.target.value)
-                setFr((+e.target.value * 9) / 5 + 32)
+                if (e.target.value === "") {
+                  setFr("")
+                  setCl("")
+                } else {
+                  setCl(e.target.value)
+                  setFr((+e.target.value * 9) / 5 + 32)
+                }
               }}
             />
           </label>
@@ -54,12 +59,25 @@ function App() {
               placeholder="enter celisus number"
               value={fr}
               onChange={(e) => {
-                setFr(e.target.value)
-                setCl(+e.target.value - (32 * 5) / 9)
+                if (e.target.value === "") {
+                  setCl("")
+                  setFr("")
+                } else {
+                  setFr(e.target.value)
+                  setCl(+e.target.value - (32 * 5) / 9)
+                }
               }}
             />
           </label>
         </div>
+        <p>
+          {`${cl || 0}C`}
+          <span>&deg;</span>
+        </p>
+        <p>
+          {`${fr || 0}F`}
+          <span>&deg;</span>
+        </p>
       </div>
     </div>
   )
